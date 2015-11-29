@@ -1,5 +1,5 @@
 $(function(){
-	$.popupHtmlFunc.init(); 
+	$.popupHtmlFunc.init();
 });
 
 $.popupHtmlFunc = {
@@ -35,17 +35,20 @@ $.popupHtmlFunc = {
             data: data,
             success: function(data, textStatus, xhr) {
             	 if(data.indexOf('/pictures/new') > 0){
-                	$.popupHtmlFunc.createSettingPage();
+                	$.popupHtmlFunc.createSettingPage(data);
                  }
             },
             error: function(xhr, textStatus, error) {console.log('error!!!!!!!');}
             });
 		});
 	},
-	createSettingPage: function(){
+	createSettingPage: function(data){
 		var template = $('#setting_template').html();
+		var token = data.match('<meta name="csrf-token" content="(.+?)" />')[0];
 		$('#main').html(template);
-		$.popupHtmlFunc.showImageSetting();	
+		$('#main').append(token);
+		$.popupHtmlFunc.showImageSetting();
+		$.popupHtmlFunc.logout();
 	},
 	loginCheck: function(){
 		$.ajax({
@@ -55,7 +58,7 @@ $.popupHtmlFunc = {
 			 if(data.indexOf('/pictures/new') < 0){
 			 	$.popupHtmlFunc.createLoginPage(data);
 			 }else{
-			 	$.popupHtmlFunc.createSettingPage();
+			 	$.popupHtmlFunc.createSettingPage(data);
 			 }
 		}).fail(function(data){
 	   	 console.log('error!!!');
@@ -75,26 +78,23 @@ $.popupHtmlFunc = {
 					//設定保存したい
 				}
 			});
+	},
+	logout: function(){
+		$('#logout').on('click',function(){
+			var data = {
+				'authenticity_token': $('meta[name=csrf-token]').attr('content'),
+				'_method': 'delete'
+			}
+			$.ajax({
+						'url': 'https://gentle-lowlands-4464.herokuapp.com/users/sign_out',
+						'type': 'post',
+						'data': data,
+						success: function(data, textStatus, xhr) {
+							$.popupHtmlFunc.loginCheck();
+						},
+						error: function(xhr, textStatus, error) {console.log('error!!!!!!!');}
+						});
+		})
 	}
 
 };
-
-
-function sendRequest(){
-	var url = "https://floating-dawn-8410.herokuapp.com/pictures/getpic"
-	$.ajax({
-   		 url: url
- 	}).done(function(data){
-   		 console.log('success!!');
-   		 //JSONで画像urlが返ってくる。{picurl:画像URL}の形式
-    var url = 'http://localhost:8888/googleEx/popup.html';
-		chrome.tabs.executeScript(null, {
-      'code' :"window.open('http://localhost:8888/googleEx/popup.html','openwindow','left=50,top=50,width=300,height=280')"
-    });
-
-	}).fail(function(data){
-	    console.log('error!!!');
-	});
-};
-
-

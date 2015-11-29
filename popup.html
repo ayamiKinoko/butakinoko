@@ -5,6 +5,7 @@
 	<link href="./css/style.css" rel="stylesheet">
 	<script src="./js/common/jquery-1.11.3.min.js"></script>
 	<script src="./js/common/underscore-min.js"></script>
+	<script src="./js/background.js"></script>
 	<script src="./js/browserAction.js"></script>
 	<script type="text/template" id="login_template">
 		<div id="login_content">
@@ -27,18 +28,20 @@
 	</script>
 
 	<script type="text/template" id="setting_template">
+		<!-- <div class="menu_header"></div> -->
 		<div id="setting_contents">
 		  <h2>画像表示</h2>
 			<div class="send_button_area">
 				<div class="off send_image_button">OFF</div>
-				<div id="sendRequest" class="on send_image_button">ON</div>
+				<div id="sendRequest" class="on send_image_button selected">ON</div>
 			</div>
 			<h2 style="padding-top: 15px;">表示位置</h2>
 			<div class="send_button_area">
-				<div class="pop show_position">?</div>
+				<div class="pop show_position">???</div>
 				<!-- <div class="tab show_position"></div> -->
 			</div>
-		<div class="setting_option"><a href="./options.html" target="_blank">詳細設定</a></div>
+		<div class="setting_option"><a href="https://gentle-lowlands-4464.herokuapp.com/" target="_blank">詳細設定</a></div>
+		<div class="setting_option"><a id="logout" href="javascript:void(0);" target="_blank">ログアウト</a></div>
 		</div>
 	</script>
 </head>

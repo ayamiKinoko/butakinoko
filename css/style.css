@@ -13,8 +13,8 @@ h1,h2{
 }
 
 #main{
-  min-width: 350px;
-  min-height: 300px;
+  width: 350px;
+  height: 300px;
   /*display: table;*/
   position: relative;
   box-sizing: border-box;
@@ -23,7 +23,7 @@ h1,h2{
 
 /** ログイン画面用*/
 #login_content{
-  height: 100%;
+  /*height: 100%;*/
   text-align: center;
   padding: 35px;
 }
@@ -41,21 +41,12 @@ h1,h2{
 
 .input_area{
     display: inline-block;
-    /*padding-left: 30px;*/
     padding-left: 24px;
 }
-
-/*.input_pass{
-  display: inline-block;
-}*/
-
-
 
 #login_button{
   width: 60px;
   display: inline-block;
-  /*background-color: red;
-  color: #ffffff;*/
   background-color: #ffffff;
   color: #ffb199;
   padding: 2px;
@@ -91,37 +82,17 @@ h1,h2{
   font-size: 15px;
 }
 
-
 .on.selected,
-.off.selected{
+.off.selected,
+.pop{
   background-image: url('../image/circle.png');
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-
-
-
-
-
-
-/*#setting_contents{
-  min-height: 350px;
-  background-color: #ff7f50;
-  /*display: table-cell;*/
+.menu_header{
+  position: absolute;
+  width: 350px;
+  height: 30px;
+  background-color: red;
 }
-
-/*#setting_contents li{
-  font-size: 17px;
-}
-
-#setting_detail{
-  min-height: 350px;
-  background-color: #7fffd4;
-  /*display: table-cell;*/
-  /*position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 300px;
-  display: none;
-}*/
