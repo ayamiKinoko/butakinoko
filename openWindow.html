@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="main">
+		<img class="image_area" src="http://p.twpl.jp/show/large/5nPYR" width="280px">
+　	</div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+	$.ajax({
+            url: 'https://gentle-lowlands-4464.herokuapp.com/pictures/random.json',
+            type: 'get',
+            'dataType': 'json',
+            success: function(result, textStatus, xhr) {
+               $('.image_area').attr('src',result.pic_url);
+            },
+            error: function(xhr, textStatus, error) {console.log('error!!!!!!!');}
+            });
+
+	</script>
+</body>
+</html>

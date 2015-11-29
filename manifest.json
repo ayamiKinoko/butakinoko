@@ -1,0 +1,32 @@
+{
+	"name":"butakinoko",
+	"version":"0.2",
+	"manifest_version": 2,
+
+	"description": "いやしの画像がとんでいく",
+
+	"browser_action":{
+		"default_icon": "image/tamagoPig.png",
+		"default_title": "ぶたきのこ",
+		"default_popup": "popup.html"
+	},
+
+	"permissions": [
+    "tabs","http://*/*","https://*/*"
+	],
+
+	"options_page" : "options.html",
+
+	"background": {
+		"scripts": ["./js/background.js"]
+	},
+
+ 	"content_scripts":[{
+  		"matches": [ "http://*/*", "https://*/*" ],
+    	"js": [  "js/common/jquery-1.11.3.min.js","js/common/underscore-min.js","js/common/backbone-min.js","js/common/require.js","js/content_scripts.js"]
+  		}]
+  	,
+  	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+
+
+}
